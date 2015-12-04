@@ -27,18 +27,30 @@ class Tile
   end
 
   def reveal
-    @revealed = true
+    self.revealed = true
+
+    if neighbor_bomb_count == 0
+      find_neighbors.each do |neighbor|
+        x, y = neighbor
+        tile = board.grid[neighbor.first][neighbor.last]
+        tile.reveal unless tile.revealed
+      end
+    end
 
 
   end
 
   def to_s
-    if bomb
-      @display_value = "X"
-    elsif neighbor_bomb_count > 0
-      @display_value = neighbor_bomb_count.to_s
-    else
-      @display_value = "_"
+    return display_value if !revealed
+
+    if revealed
+      if bomb
+        @display_value = "X"
+      elsif neighbor_bomb_count > 0
+        @display_value = neighbor_bomb_count.to_s
+      else
+        @display_value = "_"
+      end
     end
 
     display_value
@@ -64,7 +76,7 @@ class Tile
     NEIGHBORS.each do |(dx, dy)|
       neighbor = [cur_x + dx, cur_y + dy]
 
-      if neighbor.all? { |coord| coord.between?(0, board.size) }
+      if neighbor.all? { |coord| coord.between?(0, board.size - 1) }
         neighbors << neighbor
       end
     end

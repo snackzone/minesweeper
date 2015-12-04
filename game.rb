@@ -8,8 +8,8 @@ class Game
 
   def initialize(player = Player.new)
     @player = player
-    @board = Board.new(50, 9)
-    #@won = false
+    @board = Board.new(10, 15)
+    @won = false
   end
 
   def new_game
