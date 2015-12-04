@@ -20,17 +20,29 @@ class Game
   end
 
   def display
-    
+    board = ""
+
+    board.grid.each_with_index do |row, idx1|
+      row.each_with_index do |tile, idx2|
+        current_tile = board.grid[idx1][idx2]
+        if current_tile.revealed
+          board += "_"
+        else
+          board += "*"
+        end
+
+      end
+      board += "\n"
+    end
+  end
 
 
-    # board
+  def reveal(pos)
+    x, y = pos
+    #find Tile instance at pos
+    current_tile = board.grid[x][y]
 
-  #   board.each do |row|
-  #     row.each do |tile|
-  #       print #tile face value plus spacing
-  #     end
-  #     print '\n'
-  #   end
-  #
+    current_tile.reveal
+
   end
 end

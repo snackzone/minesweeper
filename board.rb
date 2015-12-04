@@ -17,16 +17,17 @@ class Board
 
     tiles = []
     num_bombs.times do
-      tiles << Tile.new("bomb")
+      tile = Tile.new(self)
+      tile.bomb = true
+      tiles << tile
     end
 
     safe_tiles = (size ** 2) - num_bombs
     safe_tiles.times do
-      tiles << Tile.new("safe")
+      tiles << Tile.new(self)
     end
 
     tiles.shuffle!
-
 
     grid.each_with_index do |row, idx1|
       row.each_with_index do |tile, idx2|
