@@ -36,10 +36,10 @@ class Tile
     # end
   end
 
-  def find_neighbors(pos)
+  def find_neighbors
     neighbors = []
 
-    cur_x, cur_y = pos
+    cur_x, cur_y = position
 
     NEIGHBORS.each do |(dx, dy)|
       neighbor = [cur_x + dx, cur_y + dy]
@@ -55,7 +55,7 @@ class Tile
   def neighbor_bomb_count
     count = 0
 
-    neighbors(pos).each do |coordinate|
+    self.find_neighbors.each do |coordinate|
       x, y = coordinate
       count += 1 if grid[x][y].bomb
     end
