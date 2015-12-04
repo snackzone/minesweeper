@@ -34,49 +34,6 @@ class Board
         grid[idx1][idx2] = tiles.pop
       end
     end
-
   end
-
-  def neighbors(pos)
-    x, y = pos
-
-    neighbor_coordinates = [
-      [x+1, y], [x-1, y], [x, y+1], [x, y-1],
-      [x+1, y+1], [x+1, y-1], [x-1, y+1], [x-1, y-1]
-    ]
-
-    neighbors = []
-
-    neighbor_coordinates.each do |coordinate|
-      if coordinate.first.between?(0, size) &&
-        coordinate.last.between?(0, size)
-
-        neighbors << coordinate
-      end
-    end
-
-    neighbors
-  end
-
-  def assign_neighbors
-    grid.each_with_index do |row, idx1|
-      row.each_with_index do |tile, idx2|
-        grid[idx1][idx2].neighbors = neighbors([idx1, idx2])
-      end
-    end
-  end
-
-  def neighbor_bomb_count(pos)
-    count = 0
-
-    neighbors(pos).each do |coordinate|
-      x, y = coordinate
-      count += 1 if grid[x][y].bomb
-    end
-
-    count
-  end
-
-
 
 end
