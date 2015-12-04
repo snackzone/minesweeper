@@ -30,6 +30,10 @@ class Tile
     @revealed = true
   end
 
+  def flag
+    @flagged = true
+  end
+
   def display
     # unless revealed
     #   @display_value

@@ -38,10 +38,36 @@ class Board
     end
   end
 
+  def display
+    board_display = ""
+
+    grid.each_with_index do |row, idx1|
+      row.each_with_index do |tile, idx2|
+        current_tile = grid[idx1][idx2]
+        if current_tile.revealed
+          board_display += "_"
+        elsif current_tile.flagged
+          board_display += "F"
+        else
+          board_display += "*"
+        end
+
+      end
+      board_display += "\n"
+    end
+    puts board_display
+  end
+
   def reveal(pos)
     x, y = pos
-    
+
     grid[x][y].reveal
+  end
+
+  def flag(pos)
+    x, y = pos
+
+    grid[x][y].flag
   end
 
 end
