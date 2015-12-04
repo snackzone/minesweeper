@@ -1,8 +1,9 @@
 require_relative 'board'
 
 class Tile
-  
-  attr_reader :bomb, :revealed, :flagged, :neighbors
+
+  attr_reader :bomb, :revealed, :flagged
+  attr_accessor :neighbors
 
   def initialize(bomb)
     @bomb = bomb == "bomb" ? true : false

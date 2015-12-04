@@ -57,6 +57,25 @@ class Board
     neighbors
   end
 
+  def assign_neighbors
+    grid.each_with_index do |row, idx1|
+      row.each_with_index do |tile, idx2|
+        grid[idx1][idx2].neighbors = neighbors([idx1, idx2])
+      end
+    end
+  end
+
+  def neighbor_bomb_count(pos)
+    count = 0
+
+    neighbors(pos).each do |coordinate|
+      x, y = coordinate
+      count += 1 if grid[x][y].bomb
+    end
+
+    count
+  end
+
 
 
 end
