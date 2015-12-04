@@ -44,7 +44,8 @@ class Board
     grid.each_with_index do |row, idx1|
       row.each_with_index do |tile, idx2|
         current_tile = grid[idx1][idx2]
-        board_display += "#{current_tile.display_value} "
+        # debugger
+        board_display += "#{current_tile} "
 
       end
       board_display += "\n"

@@ -27,9 +27,12 @@ class Tile
   end
 
   def reveal
-    raise "Cannot reveal flagged position" if flagged
     @revealed = true
 
+
+  end
+
+  def to_s
     if bomb
       @display_value = "X"
     elsif neighbor_bomb_count > 0
@@ -37,6 +40,8 @@ class Tile
     else
       @display_value = "_"
     end
+
+    display_value
   end
 
   def flag

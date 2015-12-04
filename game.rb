@@ -9,6 +9,7 @@ class Game
   def initialize(player = Player.new)
     @player = player
     @board = Board.new(50, 9)
+    #@won = false
   end
 
   def new_game
@@ -21,9 +22,16 @@ class Game
     @board = Board.new(num_bombs, size)
   end
 
+  def play
+    take_turn until game_over?
+
+    #evaluate the game result
+  end
+
   def take_turn
-    puts "Enter R/F and coordinate"
+    puts "Enter R/F/U and coordinate"
     operation, coordinate = player.get_move.split(" ")
+    operation = operation.downcase
     coordinate = coordinate.split(",").map { |el| el.to_i }
     if operation == "r"
       reveal(coordinate)
@@ -31,8 +39,26 @@ class Game
       flag(coordinate)
     elsif operation == "u"
       unflag(coordinate)
+    else
+      raise "Invalid move."
     end
     board.display
+  end
+
+  def game_over?
+    tiles = board.flatten
+    #if board contains any revealed bombs
+    if tiles.any? { |tile| tile.bomb && tile.revealed }
+      return true
+    end
+
+    #if board does not contain any non-revealed non-bombs
+    if tiles.all? { |tile| !tile.bomb && tile.revealed }
+      @won = true
+      return true
+    end
+
+    false
   end
 
   def reveal(pos)
