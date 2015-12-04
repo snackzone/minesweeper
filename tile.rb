@@ -14,7 +14,7 @@ class Tile
   ]
 
   attr_reader :flagged, :board
-  attr_accessor :neighbors, :revealed, :bomb, :position
+  attr_accessor :neighbors, :revealed, :bomb, :position, :display_value
 
   def initialize(board)
     @bomb = false
@@ -28,16 +28,19 @@ class Tile
 
   def reveal
     @revealed = true
+
+    if bomb
+      @display_value = "X"
+    elsif neighbor_bomb_count > 0
+      @display_value = neighbor_bomb_count.to_s
+    else
+      @display_value = "_"
+    end
   end
 
   def flag
     @flagged = true
-  end
-
-  def display
-    # unless revealed
-    #   @display_value
-    # end
+    @display_value = "F"
   end
 
   def find_neighbors

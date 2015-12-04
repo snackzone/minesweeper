@@ -44,13 +44,8 @@ class Board
     grid.each_with_index do |row, idx1|
       row.each_with_index do |tile, idx2|
         current_tile = grid[idx1][idx2]
-        if current_tile.revealed
-          board_display += "_"
-        elsif current_tile.flagged
-          board_display += "F"
-        else
-          board_display += "*"
-        end
+        board_display += "#{current_tile.display_value} "
+      
 
       end
       board_display += "\n"
