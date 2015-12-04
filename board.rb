@@ -8,6 +8,7 @@ class Board
     @num_bombs = num_bombs
     @size = size
     @grid = Array.new(size) { Array.new(size) }
+    make_tiles
   end
 
   def make_tiles
@@ -26,11 +27,34 @@ class Board
 
     tiles.shuffle!
 
-    grid.map do |row|
-      row.map do |tile|
-        tiles.pop
+
+    grid.each_with_index do |row, idx1|
+      row.each_with_index do |tile, idx2|
+        grid[idx1][idx2] = tiles.pop
       end
     end
+
+  end
+
+  def neighbors(pos)
+    x, y = pos
+
+    neighbor_coordinates = [
+      [x+1, y], [x-1, y], [x, y+1], [x, y-1],
+      [x+1, y+1], [x+1, y-1], [x-1, y+1], [x-1, y-1]
+    ]
+
+    neighbors = []
+
+    neighbor_coordinates.each do |coordinate|
+      if coordinate.first.between?(0, size) &&
+        coordinate.last.between?(0, size)
+
+        neighbors << coordinate
+      end
+    end
+
+    neighbors
   end
 
 
