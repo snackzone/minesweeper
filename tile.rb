@@ -14,7 +14,7 @@ class Tile
   ]
 
   attr_reader :flagged, :board
-  attr_accessor :neighbors, :revealed, :bomb
+  attr_accessor :neighbors, :revealed, :bomb, :position
 
   def initialize(board)
     @bomb = false
@@ -23,6 +23,7 @@ class Tile
     @neighbors = []
     @display_value = "*"
     @board = board
+    @position = []
   end
 
   def reveal
@@ -35,7 +36,7 @@ class Tile
     # end
   end
 
-  def neighbors(pos)
+  def find_neighbors(pos)
     neighbors = []
 
     cur_x, cur_y = pos
@@ -51,7 +52,7 @@ class Tile
     neighbors
   end
 
-  def neighbor_bomb_count(pos)
+  def neighbor_bomb_count
     count = 0
 
     neighbors(pos).each do |coordinate|

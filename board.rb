@@ -31,7 +31,9 @@ class Board
 
     grid.each_with_index do |row, idx1|
       row.each_with_index do |tile, idx2|
-        grid[idx1][idx2] = tiles.pop
+        new_tile = tiles.pop
+        new_tile.position = [idx1, idx2]
+        grid[idx1][idx2] = new_tile
       end
     end
   end
