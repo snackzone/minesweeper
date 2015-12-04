@@ -38,4 +38,10 @@ class Board
     end
   end
 
+  def reveal(pos)
+    x, y = pos
+    
+    grid[x][y].reveal
+  end
+
 end

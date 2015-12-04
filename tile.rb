@@ -27,7 +27,7 @@ class Tile
   end
 
   def reveal
-    revealed = true
+    @revealed = true
   end
 
   def display

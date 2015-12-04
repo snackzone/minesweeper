@@ -1,6 +1,7 @@
 require_relative 'board'
 require_relative 'tile'
 require_relative 'player'
+require 'byebug'
 
 class Game
   attr_reader :board
@@ -21,20 +22,22 @@ class Game
   end
 
   def display
-    board = ""
+    board_display = ""
 
     board.grid.each_with_index do |row, idx1|
       row.each_with_index do |tile, idx2|
         current_tile = board.grid[idx1][idx2]
+        # debugger
         if current_tile.revealed
-          board += "_"
+          board_display += "_"
         else
-          board += "*"
+          board_display += "*"
         end
 
       end
-      board += "\n"
+      board_display += "\n"
     end
+    puts board_display
   end
 
 
