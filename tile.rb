@@ -57,7 +57,7 @@ class Tile
 
     self.find_neighbors.each do |coordinate|
       x, y = coordinate
-      count += 1 if grid[x][y].bomb
+      count += 1 if board.grid[x][y].bomb
     end
 
     count

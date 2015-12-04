@@ -7,6 +7,7 @@ class Game
 
   def initialize(player = Player.new)
     @player = player
+    @board = Board.new(50, 9)
   end
 
   def new_game
@@ -38,11 +39,6 @@ class Game
 
 
   def reveal(pos)
-    x, y = pos
-    #find Tile instance at pos
-    current_tile = board.grid[x][y]
-
-    current_tile.reveal
-
+    board.reveal(pos)
   end
 end
