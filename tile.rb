@@ -40,6 +40,7 @@ class Tile
   end
 
   def flag
+    raise "why would you flag a revealed position?" if revealed
     @flagged = true
     @display_value = "F"
     # need to add unflagging

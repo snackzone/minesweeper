@@ -4,7 +4,7 @@ require_relative 'player'
 require 'byebug'
 
 class Game
-  attr_reader :board
+  attr_reader :board, :player
 
   def initialize(player = Player.new)
     @player = player
@@ -21,10 +21,22 @@ class Game
     @board = Board.new(num_bombs, size)
   end
 
-  def reveal(pos)
-    
-    board.reveal(pos)
+  def take_turn
+    puts "Enter R/F and coordinate"
+    operation, coordinate = player.get_move.split(" ")
+    coordinate = coordinate.split(",").map { |el| el.to_i }
+    if operation == "r"
+      reveal(coordinate)
+    elsif operation == "f"
+      flag(coordinate)
+    elsif operation == "u"
+      unflag(coordinate)
+    end
+    board.display
+  end
 
+  def reveal(pos)
+    board.reveal(pos)
   end
 
   def flag(pos)
