@@ -45,7 +45,6 @@ class Board
       row.each_with_index do |tile, idx2|
         current_tile = grid[idx1][idx2]
         board_display += "#{current_tile.display_value} "
-      
 
       end
       board_display += "\n"
@@ -63,6 +62,12 @@ class Board
     x, y = pos
 
     grid[x][y].flag
+  end
+
+  def unflag(pos)
+    x, y = pos
+
+    grid[x][y].unflag
   end
 
 end

@@ -22,12 +22,17 @@ class Game
   end
 
   def reveal(pos)
+    
     board.reveal(pos)
+
   end
 
   def flag(pos)
     board.flag(pos)
   end
 
+  def unflag(pos)
+    board.unflag(pos)
+  end
 
 end

@@ -27,6 +27,7 @@ class Tile
   end
 
   def reveal
+    raise "Cannot reveal flagged position" if flagged
     @revealed = true
 
     if bomb
@@ -41,6 +42,12 @@ class Tile
   def flag
     @flagged = true
     @display_value = "F"
+    # need to add unflagging
+  end
+
+  def unflag
+    @flagged = false
+    @display_value = "*"
   end
 
   def find_neighbors
