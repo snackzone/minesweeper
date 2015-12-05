@@ -4,7 +4,7 @@ require_relative 'player'
 require 'byebug'
 
 class Game
-  attr_reader :board, :player, :won
+  attr_reader :board, :player, :won, :time_elapsed
 
   def initialize(player = Player.new)
     @player = player
@@ -23,6 +23,8 @@ class Game
   end
 
   def play
+    set_timer
+
     take_turn until game_over?
 
     reveal_bombs
@@ -36,6 +38,10 @@ class Game
   end
 
   def take_turn
+    system("clear")
+    update_timer
+    puts "TIMER: #{time_elapsed}"
+
     board.display
 
     puts "Enter r/f and coordinate"
@@ -84,5 +90,14 @@ class Game
 
   def flag(pos)
     board.flag(pos)
+  end
+
+  def set_timer
+    @start_time = Time.now
+    @time_elapsed = 0
+  end
+
+  def update_timer
+    @time_elapsed = (Time.now - @start_time).floor
   end
 end
