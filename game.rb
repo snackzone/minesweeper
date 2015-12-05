@@ -1,6 +1,5 @@
 require_relative 'board'
 require_relative 'tile'
-require_relative 'player'
 require 'colorize'
 require 'yaml'
 require 'byebug'
@@ -17,19 +16,13 @@ class Game
   attr_reader :board, :player, :won, :time_elapsed
 
   def initialize
-    @board = Board.new(10, 15)
+    @board = Board.new(40, 16)
     @won = false
     @time_elapsed = 0
   end
 
-  def new_game
-    puts "board size?"
-    size = gets.chomp.to_i
-
-    puts "num of bombs?"
-    num_bombs = gets.chomp.to_i
-
-    @board = Board.new(num_bombs, size)
+  def self.new_game
+    Game.new.play
   end
 
   def play
@@ -40,6 +33,8 @@ class Game
     reveal_bombs
     refresh_screen
     puts won ? "you win!" : "try again!"
+
+    check_high_score
   end
 
   def take_turn
@@ -123,6 +118,33 @@ class Game
 
   def inspect
     "#{board.size}:#{board.num_bombs}:#{time_elapsed}"
+  end
+
+  def check_high_score
+    name, high_score = File.readlines("high_score.txt").map(&:chomp)
+
+    if won && time_elapsed < high_score.to_i
+      puts "NEW HIGH SCORE!!!!"
+      update_high_score
+    else display_high_score
+    end
+  end
+
+  def display_high_score
+    name, high_score = File.readlines("high_score.txt").map(&:chomp)
+
+    puts "HIGH SCORE: #{name}, #{high_score}"
+  end
+
+  def update_high_score
+    puts "enter name:"
+    name = gets.chomp
+    
+    File.truncate('high_score.txt', 0)
+    File.open('high_score.txt', "w") do |file|
+      file.puts name
+      file.puts time_elapsed
+    end
   end
 
   def save
