@@ -4,7 +4,7 @@ require_relative 'player'
 require 'byebug'
 
 class Game
-  attr_reader :board, :player
+  attr_reader :board, :player, :won
 
   def initialize(player = Player.new)
     @player = player
@@ -25,22 +25,35 @@ class Game
   def play
     take_turn until game_over?
 
-    #evaluate the game result
+    if won
+      puts "you win!"
+    else
+      puts "try again!"
+    end
   end
 
   def take_turn
     puts "Enter f/u and coordinate"
     operation, coordinate = player.get_move.split(" ")
-    operation = operation.downcase
+    operation.downcase!
     coordinate = coordinate.split(",").map { |el| el.to_i }
+
+    raise "invalid move!" unless valid_move?(coordinate)
+
     if operation == "r"
       reveal(coordinate)
     elsif operation == "f"
       flag(coordinate)
     else
-      raise "Invalid move."
+      raise "Invalid operation."
     end
+
     board.display
+  end
+
+  def valid_move?(coordinate)
+    (coordinate.length == 2) &&
+    (coordinate.all? { |value| value.between?(0, board.size - 1) })
   end
 
   def game_over?

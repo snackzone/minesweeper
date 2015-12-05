@@ -76,7 +76,7 @@ class Tile
     NEIGHBORS.each do |(dx, dy)|
       neighbor = [cur_x + dx, cur_y + dy]
 
-      if neighbor.all? { |coord| coord.between?(0, board.size - 1) }
+      if neighbor.all? { |value| value.between?(0, board.size - 1) }
         neighbors << neighbor
       end
     end
