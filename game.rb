@@ -33,6 +33,8 @@ class Game
     refresh_screen
     puts won ? "you win!" : "try again!"
     check_high_score
+
+    prompt_new_game
   end
 
   def take_turn
@@ -62,8 +64,7 @@ class Game
   def perform_move(operation, move)
     case operation
     when "exit"
-      puts "bye!"
-      exit
+      quit
     when "save"
       save
     when "r"
@@ -84,6 +85,12 @@ class Game
     end
 
     false
+  end
+
+  def prompt_new_game
+    puts "play again? (y/n)"
+    input = gets.chomp
+    input == "y" ? Game.new_game : quit
   end
 
   def refresh_screen
@@ -166,5 +173,10 @@ class Game
 
     puts "game saved successfully."
     sleep(1)
+  end
+
+  def quit
+    puts "bye!"
+    exit
   end
 end
