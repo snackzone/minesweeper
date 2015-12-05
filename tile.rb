@@ -32,7 +32,7 @@ class Tile
     if neighbor_bomb_count == 0
       find_neighbors.each do |neighbor|
         x, y = neighbor
-        tile = board.grid[neighbor.first][neighbor.last]
+        tile = board[x, y]
         tile.reveal unless tile.revealed
       end
     end
@@ -89,7 +89,7 @@ class Tile
 
     self.find_neighbors.each do |coordinate|
       x, y = coordinate
-      count += 1 if board.grid[x][y].bomb
+      count += 1 if board[x,y].bomb
     end
 
     count

@@ -24,7 +24,7 @@ class Board
       row.each_with_index do |tile, idx2|
         new_tile = tiles.pop
         new_tile.position = [idx1, idx2]
-        grid[idx1][idx2] = new_tile
+        self[idx1, idx2] = new_tile
       end
     end
   end
@@ -34,10 +34,8 @@ class Board
 
     grid.each_with_index do |row, idx1|
       row.each_with_index do |tile, idx2|
-        current_tile = grid[idx1][idx2]
-        # debugger
-        board_display += "#{current_tile} "
-
+          current_tile = self[idx1, idx2]
+          board_display += "#{current_tile} "
       end
       board_display += "\n"
     end
@@ -47,19 +45,19 @@ class Board
   def reveal(pos)
     x, y = pos
 
-    grid[x][y].reveal
+    self[x, y].reveal
   end
 
   def flag(pos)
     x, y = pos
 
-    grid[x][y].flag
+    self[x, y].flag
   end
 
   def unflag(pos)
     x, y = pos
 
-    grid[x][y].unflag
+    self[x, y].unflag
   end
 
   def [](x,y)
