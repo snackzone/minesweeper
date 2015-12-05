@@ -1,6 +1,7 @@
 require_relative 'board'
 require_relative 'tile'
 require_relative 'player'
+require 'yaml'
 require 'byebug'
 
 class Game
@@ -10,6 +11,7 @@ class Game
     @player = player
     @board = Board.new(10, 15)
     @won = false
+    @time_elapsed = 0
   end
 
   def new_game
@@ -103,6 +105,10 @@ class Game
 
   def update_timer
     @time_elapsed = (Time.now - @start_time).floor
+  end
+
+  def inspect
+    "#{board.size}:#{board.num_bombs}:#{time_elapsed}"
   end
 
   def save

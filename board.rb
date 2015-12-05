@@ -61,4 +61,12 @@ class Board
   def []=(x,y,value)
     @grid[x][y] = value
   end
+
+  def inspect
+    grid.each do |row|
+      row.map do |tile|
+        tile.inspect
+      end
+    end
+  end
 end

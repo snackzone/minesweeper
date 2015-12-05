@@ -95,4 +95,7 @@ class Tile
     count
   end
 
+  def inspect
+    @display_value
+  end
 end
