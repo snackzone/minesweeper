@@ -25,6 +25,12 @@ class Game
   def play
     take_turn until game_over?
 
+    board.grid.flatten.select{ |tile| tile.bomb }.each do |bomb|
+      bomb.reveal
+    end
+
+    board.display
+
     if won
       puts "you win!"
     else
@@ -58,14 +64,9 @@ class Game
 
   def game_over?
     tiles = board.grid.flatten
-    #if board contains any revealed bombs
-    if tiles.any? { |tile| tile.bomb && tile.revealed }
-      return true
-    end
+    return true if tiles.any? { |tile| tile.bomb && tile.revealed }
 
     non_bombs = tiles.reject { |tile| tile.bomb }
-    #>>>>
-    #if board does not contain any non-revealed non-bombs
     if non_bombs.all? { |tile| tile.revealed }
       @won = true
       return true
