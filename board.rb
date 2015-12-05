@@ -1,7 +1,6 @@
 require_relative 'tile'
 
 class Board
-
   attr_accessor :grid, :num_bombs, :size
 
   def initialize(num_bombs, size = 9)

@@ -7,7 +7,7 @@ require 'colorize'
 class Game
   DISPLAY_COLOR = :green
 
-  def self.load
+  def self.load_game
     puts "loading saved game...".colorize(DISPLAY_COLOR)
     sleep(1)
 
@@ -24,7 +24,7 @@ class Game
   def initialize
     @board = Board.new(40, 16)
     @won = false
-    @time_elapsed = 0
+    @time_elapsed = 0 #TIMER RESETS WHEN SELF##LOAD_GAME
   end
 
   def play
@@ -72,7 +72,7 @@ class Game
     when "save"
       save
     when "r"
-      reveal(move) #unless flagged
+      reveal(move)
     when "f"
       flag(move)
     end
@@ -188,4 +188,11 @@ class Game
     puts "bye!".colorize(DISPLAY_COLOR)
     exit
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  puts "enter NEW or LOAD."
+  input = gets.chomp.downcase
+
+  input == "load" ? Game.load_game: Game.new_game
 end

@@ -22,8 +22,9 @@ class Tile
     neighbor_bomb_count: :white
   }
 
-  attr_reader :flagged, :board
-  attr_accessor :neighbors, :revealed, :bomb, :position, :display_value, :flagged
+  attr_reader :board
+  attr_accessor :neighbors, :revealed, :bomb, :position, :display_value,
+  :flagged
 
   def initialize(board)
     @bomb = false
