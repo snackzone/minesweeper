@@ -1,6 +1,7 @@
 require_relative 'board'
 require_relative 'tile'
 require_relative 'player'
+require 'colorize'
 require 'yaml'
 require 'byebug'
 

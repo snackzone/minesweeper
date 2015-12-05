@@ -21,7 +21,7 @@ class Tile
     @revealed = false
     @flagged = false
     @neighbors = []
-    @display_value = "*"
+    @display_value = "*".colorize(:yellow)
     @board = board
     @position = []
   end
@@ -45,11 +45,11 @@ class Tile
 
     if revealed
       if bomb
-        @display_value = "X"
+        @display_value = "X".colorize(:red)
       elsif neighbor_bomb_count > 0
-        @display_value = neighbor_bomb_count.to_s
+        @display_value = neighbor_bomb_count.to_s.colorize(:white)
       else
-        @display_value = "_"
+        @display_value = "_".colorize(:blue)
       end
     end
 
@@ -64,7 +64,7 @@ class Tile
       @display_value = "*"
     else
       @flagged = true
-      @display_value = "F"
+      @display_value = "F".colorize(:light_blue)
     end
   end
 
