@@ -28,7 +28,8 @@ class Game
     take_turn until game_over?
 
     reveal_bombs
-    board.display
+
+    refresh_screen
 
     if won
       puts "you win!"
@@ -38,11 +39,7 @@ class Game
   end
 
   def take_turn
-    system("clear")
-    update_timer
-    puts "TIMER: #{time_elapsed}"
-
-    board.display
+    refresh_screen
 
     puts "Enter r/f and coordinate"
     operation, coordinate = player.get_move.split(" ")
@@ -78,6 +75,13 @@ class Game
     false
   end
 
+  def refresh_screen
+    system("clear")
+    update_timer
+    puts "TIMER: #{time_elapsed}"
+    board.display
+  end
+
   def reveal_bombs
     board.grid.flatten.select{ |tile| tile.bomb }.each do |bomb|
       bomb.reveal
@@ -99,5 +103,17 @@ class Game
 
   def update_timer
     @time_elapsed = (Time.now - @start_time).floor
+  end
+
+  def save
+    File.open("saved_games.txt", "w") do |file|
+      #add file to save files self.to_yaml
+    end
+  end
+
+  def load
+    File.open("saved_games.txt", "r") do |file|
+      #load file by YAML.parse(file)
+    end
   end
 end
