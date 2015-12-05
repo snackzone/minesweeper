@@ -25,10 +25,7 @@ class Game
   def play
     take_turn until game_over?
 
-    board.grid.flatten.select{ |tile| tile.bomb }.each do |bomb|
-      bomb.reveal
-    end
-
+    reveal_bombs
     board.display
 
     if won
@@ -73,6 +70,12 @@ class Game
     end
 
     false
+  end
+
+  def reveal_bombs
+    board.grid.flatten.select{ |tile| tile.bomb }.each do |bomb|
+      bomb.reveal
+    end
   end
 
   def reveal(pos)
