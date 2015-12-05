@@ -17,12 +17,13 @@ class Tile
   TILE_DISPLAYS = {
     unrevealed: "*".colorize(:yellow),
     empty: "_".colorize(:blue),
-    flagged: "F".colorize(:light_blue),
-    bomb: "X".colorize(:red)
+    flagged: "F".colorize(:red),
+    bomb: "X".colorize(:red),
+    neighbor_bomb_count: :white
   }
 
   attr_reader :flagged, :board
-  attr_accessor :neighbors, :revealed, :bomb, :position, :display_value
+  attr_accessor :neighbors, :revealed, :bomb, :position, :display_value, :flagged
 
   def initialize(board)
     @bomb = false
@@ -35,17 +36,17 @@ class Tile
   end
 
   def reveal
-    self.revealed = true
+    unless self.flagged
+      self.revealed = true
 
-    if neighbor_bomb_count == 0
-      find_neighbors.each do |neighbor|
-        x, y = neighbor
-        tile = board[x, y]
-        tile.reveal unless tile.revealed
+      if neighbor_bomb_count == 0
+        find_neighbors.each do |neighbor|
+          x, y = neighbor
+          tile = board[x, y]
+          tile.reveal unless tile.revealed
+        end
       end
     end
-
-
   end
 
   def to_s
@@ -53,11 +54,11 @@ class Tile
 
     if revealed
       if bomb
-        @display_value = TILE_DISPLAYS[:bomb]
+        display_value = TILE_DISPLAYS[:bomb]
       elsif neighbor_bomb_count > 0
-        @display_value = neighbor_bomb_count.to_s.colorize(:white)
+        display_value = neighbor_bomb_count.to_s.colorize(TILE_DISPLAYS[:neighbor_bomb_count])
       else
-        @display_value = TILE_DISPLAYS[:empty]
+        display_value = TILE_DISPLAYS[:empty]
       end
     end
 
@@ -65,14 +66,12 @@ class Tile
   end
 
   def flag
-    raise "that position is already revealed." if revealed
-
     if flagged
-      @flagged = false
-      @display_value = TILE_DISPLAYS[:unrevealed]
-    else
-      @flagged = true
-      @display_value = TILE_DISPLAYS[:flagged]
+      self.flagged = false
+      display_value = TILE_DISPLAYS[:unrevealed]
+    elsif !revealed
+      self.flagged = true
+      display_value = TILE_DISPLAYS[:flagged]
     end
   end
 

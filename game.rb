@@ -1,6 +1,5 @@
 require_relative 'board'
 require_relative 'tile'
-require 'colorize'
 require 'yaml'
 require 'byebug'
 
@@ -68,7 +67,7 @@ class Game
     when "save"
       save
     when "r"
-      reveal(move)
+      reveal(move) #unless flagged
     when "f"
       flag(move)
     end
