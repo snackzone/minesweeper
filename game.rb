@@ -5,6 +5,14 @@ require 'yaml'
 require 'byebug'
 
 class Game
+  def self.load
+    puts "loading saved game..."
+    sleep(1)
+
+    loaded_game = YAML.load_file("SAVED_GAME.yml")
+    loaded_game.play
+  end
+
   attr_reader :board, :player, :won, :time_elapsed
 
   def initialize(player = Player.new)
@@ -39,9 +47,12 @@ class Game
 
     operation, move = get_move
 
-    if operation == "r"
+    case operation
+    when "s"
+      save
+    when "r"
       reveal(move)
-    elsif operation == "f"
+    when "f"
       flag(move)
     else
       raise "Invalid operation."
@@ -77,9 +88,12 @@ class Game
     puts "Enter r/f and coordinate"
     operation, coordinate = player.get_move.split(" ")
     operation.downcase!
-    coordinate = coordinate.split(",").map { |el| el.to_i }
 
-    raise "invalid move!" unless valid_move?(coordinate)
+    if coordinate
+      coordinate = coordinate.split(",").map { |el| el.to_i }
+    end
+
+    #raise "invalid move!" unless valid_move?(coordinate)
 
     [operation, coordinate]
   end
@@ -112,14 +126,11 @@ class Game
   end
 
   def save
-    File.open("saved_games.txt", "w") do |file|
-      #add file to save files self.to_yaml
-    end
-  end
+    f = File.new("SAVED_GAME.yml", "w")
+    f.write(self.to_yaml)
+    f.close
 
-  def load
-    File.open("saved_games.txt", "r") do |file|
-      #load file by YAML.parse(file)
-    end
+    puts "game saved successfully."
+    sleep(1)
   end
 end
