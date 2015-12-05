@@ -16,8 +16,7 @@ class Game
 
   attr_reader :board, :player, :won, :time_elapsed
 
-  def initialize(player = Player.new)
-    @player = player
+  def initialize
     @board = Board.new(10, 15)
     @won = false
     @time_elapsed = 0
@@ -87,7 +86,7 @@ class Game
 
   def get_move
     puts "Enter r/f and coordinate"
-    operation, coordinate = player.get_move.split(" ")
+    operation, coordinate = gets.chomp.split(" ")
     operation.downcase!
 
     if coordinate
