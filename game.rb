@@ -50,13 +50,16 @@ class Game
   end
 
   def valid_move?(operation, coordinate)
+    #debugger
+
     if operation == "save" || operation == "exit"
       true
     elsif coordinate.nil?
       false
     elsif operation == "r" || operation == "f"
       (coordinate.length == 2) &&
-      (coordinate.all? { |value| value.between?(0, board.size - 1) })
+      (coordinate.all? { |value| value.class == Fixnum &&
+        value.between?(0, board.size - 1) })
     else false
     end
   end
@@ -107,8 +110,9 @@ class Game
 
     if coordinate
       letters = ("a".."z").to_a
-      coordinate = coordinate.downcase.split(",").map do |el|#.map { |el| el.to_i }
-        if letters.include?(el)
+      coordinate = coordinate.downcase.split(",").map.with_index do |el, idx|
+        if idx == 0
+        #if letters.include?(el)
           #map to integer corresponding to letter index
           letters.index(el)
         else
@@ -116,7 +120,6 @@ class Game
         end
       end.reverse
     end
-    #debugger
 
     [operation, coordinate]
   end

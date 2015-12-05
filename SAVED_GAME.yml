@@ -5,7 +5,7 @@ board: &1 !ruby/object:Board
   grid:
   - - !ruby/object:Tile
       bomb: false
-      revealed: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -15,7 +15,7 @@ board: &1 !ruby/object:Board
       - 0
     - !ruby/object:Tile
       bomb: false
-      revealed: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -25,7 +25,7 @@ board: &1 !ruby/object:Board
       - 1
     - !ruby/object:Tile
       bomb: false
-      revealed: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -34,18 +34,18 @@ board: &1 !ruby/object:Board
       - 0
       - 2
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
-      flagged: false
+      flagged: true
       neighbors: []
-      display_value: "\e[0;33;49m*\e[0m"
+      display_value: "\e[0;31;49mF\e[0m"
       board: *1
       position:
       - 0
       - 3
     - !ruby/object:Tile
       bomb: false
-      revealed: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -94,7 +94,7 @@ board: &1 !ruby/object:Board
       - 0
       - 8
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -134,7 +134,7 @@ board: &1 !ruby/object:Board
       - 0
       - 12
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -154,7 +154,7 @@ board: &1 !ruby/object:Board
       - 0
       - 14
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -165,7 +165,7 @@ board: &1 !ruby/object:Board
       - 15
   - - !ruby/object:Tile
       bomb: false
-      revealed: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -174,8 +174,8 @@ board: &1 !ruby/object:Board
       - 1
       - 0
     - !ruby/object:Tile
-      bomb: true
-      revealed: false
+      bomb: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -185,7 +185,7 @@ board: &1 !ruby/object:Board
       - 1
     - !ruby/object:Tile
       bomb: false
-      revealed: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -194,8 +194,8 @@ board: &1 !ruby/object:Board
       - 1
       - 2
     - !ruby/object:Tile
-      bomb: true
-      revealed: false
+      bomb: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -205,7 +205,7 @@ board: &1 !ruby/object:Board
       - 3
     - !ruby/object:Tile
       bomb: false
-      revealed: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -234,7 +234,7 @@ board: &1 !ruby/object:Board
       - 1
       - 6
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -294,7 +294,7 @@ board: &1 !ruby/object:Board
       - 1
       - 12
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -325,7 +325,7 @@ board: &1 !ruby/object:Board
       - 15
   - - !ruby/object:Tile
       bomb: false
-      revealed: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -335,7 +335,7 @@ board: &1 !ruby/object:Board
       - 0
     - !ruby/object:Tile
       bomb: false
-      revealed: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -345,7 +345,7 @@ board: &1 !ruby/object:Board
       - 1
     - !ruby/object:Tile
       bomb: false
-      revealed: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -355,7 +355,7 @@ board: &1 !ruby/object:Board
       - 2
     - !ruby/object:Tile
       bomb: false
-      revealed: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -364,8 +364,8 @@ board: &1 !ruby/object:Board
       - 2
       - 3
     - !ruby/object:Tile
-      bomb: true
-      revealed: false
+      bomb: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -374,7 +374,7 @@ board: &1 !ruby/object:Board
       - 2
       - 4
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -404,7 +404,7 @@ board: &1 !ruby/object:Board
       - 2
       - 7
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -424,7 +424,7 @@ board: &1 !ruby/object:Board
       - 2
       - 9
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -474,7 +474,7 @@ board: &1 !ruby/object:Board
       - 2
       - 14
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -485,7 +485,7 @@ board: &1 !ruby/object:Board
       - 15
   - - !ruby/object:Tile
       bomb: false
-      revealed: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -495,7 +495,7 @@ board: &1 !ruby/object:Board
       - 0
     - !ruby/object:Tile
       bomb: false
-      revealed: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -505,7 +505,7 @@ board: &1 !ruby/object:Board
       - 1
     - !ruby/object:Tile
       bomb: false
-      revealed: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -515,7 +515,7 @@ board: &1 !ruby/object:Board
       - 2
     - !ruby/object:Tile
       bomb: false
-      revealed: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -525,7 +525,7 @@ board: &1 !ruby/object:Board
       - 3
     - !ruby/object:Tile
       bomb: false
-      revealed: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -534,7 +534,7 @@ board: &1 !ruby/object:Board
       - 3
       - 4
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -574,8 +574,8 @@ board: &1 !ruby/object:Board
       - 3
       - 8
     - !ruby/object:Tile
-      bomb: true
-      revealed: false
+      bomb: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -584,7 +584,7 @@ board: &1 !ruby/object:Board
       - 3
       - 9
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -614,7 +614,7 @@ board: &1 !ruby/object:Board
       - 3
       - 12
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -654,7 +654,7 @@ board: &1 !ruby/object:Board
       - 4
       - 0
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -665,7 +665,7 @@ board: &1 !ruby/object:Board
       - 1
     - !ruby/object:Tile
       bomb: false
-      revealed: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -675,7 +675,7 @@ board: &1 !ruby/object:Board
       - 2
     - !ruby/object:Tile
       bomb: false
-      revealed: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -685,7 +685,7 @@ board: &1 !ruby/object:Board
       - 3
     - !ruby/object:Tile
       bomb: false
-      revealed: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -694,7 +694,7 @@ board: &1 !ruby/object:Board
       - 4
       - 4
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -774,7 +774,7 @@ board: &1 !ruby/object:Board
       - 4
       - 12
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -804,7 +804,7 @@ board: &1 !ruby/object:Board
       - 4
       - 15
   - - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -824,7 +824,7 @@ board: &1 !ruby/object:Board
       - 5
       - 1
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -855,7 +855,7 @@ board: &1 !ruby/object:Board
       - 4
     - !ruby/object:Tile
       bomb: false
-      revealed: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -924,7 +924,7 @@ board: &1 !ruby/object:Board
       - 5
       - 11
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -934,7 +934,7 @@ board: &1 !ruby/object:Board
       - 5
       - 12
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -944,7 +944,7 @@ board: &1 !ruby/object:Board
       - 5
       - 13
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -954,7 +954,7 @@ board: &1 !ruby/object:Board
       - 5
       - 14
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -964,7 +964,7 @@ board: &1 !ruby/object:Board
       - 5
       - 15
   - - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -974,7 +974,7 @@ board: &1 !ruby/object:Board
       - 6
       - 0
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -984,7 +984,7 @@ board: &1 !ruby/object:Board
       - 6
       - 1
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -994,7 +994,7 @@ board: &1 !ruby/object:Board
       - 6
       - 2
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -1044,7 +1044,7 @@ board: &1 !ruby/object:Board
       - 6
       - 7
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -1054,7 +1054,7 @@ board: &1 !ruby/object:Board
       - 6
       - 8
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -1124,7 +1124,7 @@ board: &1 !ruby/object:Board
       - 6
       - 15
   - - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -1134,7 +1134,7 @@ board: &1 !ruby/object:Board
       - 7
       - 0
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -1204,7 +1204,7 @@ board: &1 !ruby/object:Board
       - 7
       - 7
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -1244,7 +1244,7 @@ board: &1 !ruby/object:Board
       - 7
       - 11
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -1264,7 +1264,7 @@ board: &1 !ruby/object:Board
       - 7
       - 13
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -1284,7 +1284,7 @@ board: &1 !ruby/object:Board
       - 7
       - 15
   - - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -1314,7 +1314,7 @@ board: &1 !ruby/object:Board
       - 8
       - 2
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -1324,7 +1324,7 @@ board: &1 !ruby/object:Board
       - 8
       - 3
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -1354,7 +1354,7 @@ board: &1 !ruby/object:Board
       - 8
       - 6
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -1554,7 +1554,7 @@ board: &1 !ruby/object:Board
       - 9
       - 10
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -1624,7 +1624,7 @@ board: &1 !ruby/object:Board
       - 10
       - 1
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -1654,7 +1654,7 @@ board: &1 !ruby/object:Board
       - 10
       - 4
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -1694,7 +1694,7 @@ board: &1 !ruby/object:Board
       - 10
       - 8
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -1704,7 +1704,7 @@ board: &1 !ruby/object:Board
       - 10
       - 9
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -1724,7 +1724,7 @@ board: &1 !ruby/object:Board
       - 10
       - 11
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -1754,7 +1754,7 @@ board: &1 !ruby/object:Board
       - 10
       - 14
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -1774,7 +1774,7 @@ board: &1 !ruby/object:Board
       - 11
       - 0
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -1794,7 +1794,7 @@ board: &1 !ruby/object:Board
       - 11
       - 2
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -1904,7 +1904,7 @@ board: &1 !ruby/object:Board
       - 11
       - 13
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -1964,7 +1964,7 @@ board: &1 !ruby/object:Board
       - 12
       - 3
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -1985,7 +1985,7 @@ board: &1 !ruby/object:Board
       - 5
     - !ruby/object:Tile
       bomb: false
-      revealed: false
+      revealed: true
       flagged: false
       neighbors: []
       display_value: "\e[0;33;49m*\e[0m"
@@ -1994,7 +1994,7 @@ board: &1 !ruby/object:Board
       - 12
       - 6
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -2034,7 +2034,7 @@ board: &1 !ruby/object:Board
       - 12
       - 10
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -2064,7 +2064,7 @@ board: &1 !ruby/object:Board
       - 12
       - 13
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -2074,7 +2074,7 @@ board: &1 !ruby/object:Board
       - 12
       - 14
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -2094,7 +2094,7 @@ board: &1 !ruby/object:Board
       - 13
       - 0
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -2144,7 +2144,7 @@ board: &1 !ruby/object:Board
       - 13
       - 5
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -2174,7 +2174,7 @@ board: &1 !ruby/object:Board
       - 13
       - 8
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -2234,7 +2234,7 @@ board: &1 !ruby/object:Board
       - 13
       - 14
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -2324,7 +2324,7 @@ board: &1 !ruby/object:Board
       - 14
       - 7
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -2334,7 +2334,7 @@ board: &1 !ruby/object:Board
       - 14
       - 8
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -2394,7 +2394,7 @@ board: &1 !ruby/object:Board
       - 14
       - 14
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -2424,7 +2424,7 @@ board: &1 !ruby/object:Board
       - 15
       - 1
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -2444,7 +2444,7 @@ board: &1 !ruby/object:Board
       - 15
       - 3
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -2454,7 +2454,7 @@ board: &1 !ruby/object:Board
       - 15
       - 4
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -2474,7 +2474,7 @@ board: &1 !ruby/object:Board
       - 15
       - 6
     - !ruby/object:Tile
-      bomb: false
+      bomb: true
       revealed: false
       flagged: false
       neighbors: []
@@ -2484,7 +2484,7 @@ board: &1 !ruby/object:Board
       - 15
       - 7
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -2504,7 +2504,7 @@ board: &1 !ruby/object:Board
       - 15
       - 9
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -2534,7 +2534,7 @@ board: &1 !ruby/object:Board
       - 15
       - 12
     - !ruby/object:Tile
-      bomb: true
+      bomb: false
       revealed: false
       flagged: false
       neighbors: []
@@ -2564,5 +2564,5 @@ board: &1 !ruby/object:Board
       - 15
       - 15
 won: false
-time_elapsed: 0
-start_time: 2015-12-05 15:31:11.932415000 -05:00
+time_elapsed: 79
+start_time: 2015-12-05 15:33:00.692409000 -05:00
