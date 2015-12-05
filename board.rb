@@ -12,22 +12,27 @@ class Board
   end
 
   def make_tiles
-    #  make bomb tiles == num_bombs
-    # make safe tiles == to gird.size - num_bombs
-
     tiles = []
-    num_bombs.times do
-      tile = Tile.new(self)
-      tile.bomb = true
-      tiles << tile
-    end
 
-    safe_tiles = (size ** 2) - num_bombs
-    safe_tiles.times do
+    (size**2).times do
       tiles << Tile.new(self)
     end
 
-    tiles.shuffle!
+    tiles.sample(num_bombs).each { |tile| tile.bomb = true }
+
+    #
+    # num_bombs.times do
+    #   tile = Tile.new(self)
+    #   tile.bomb = true
+    #   tiles << tile
+    # end
+    #
+    # safe_tiles = (size ** 2) - num_bombs
+    # safe_tiles.times do
+    #   tiles << Tile.new(self)
+    # end
+    #
+    # tiles.shuffle!
 
     grid.each_with_index do |row, idx1|
       row.each_with_index do |tile, idx2|
