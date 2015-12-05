@@ -28,30 +28,19 @@ class Game
     take_turn until game_over?
 
     reveal_bombs
-
     refresh_screen
-
-    if won
-      puts "you win!"
-    else
-      puts "try again!"
-    end
+    puts won ? "you win!" : "try again!"
   end
 
   def take_turn
     refresh_screen
 
-    puts "Enter r/f and coordinate"
-    operation, coordinate = player.get_move.split(" ")
-    operation.downcase!
-    coordinate = coordinate.split(",").map { |el| el.to_i }
-
-    raise "invalid move!" unless valid_move?(coordinate)
+    operation, move = get_move
 
     if operation == "r"
-      reveal(coordinate)
+      reveal(move)
     elsif operation == "f"
-      flag(coordinate)
+      flag(move)
     else
       raise "Invalid operation."
     end
@@ -80,6 +69,17 @@ class Game
     update_timer
     puts "TIMER: #{time_elapsed}"
     board.display
+  end
+
+  def get_move
+    puts "Enter r/f and coordinate"
+    operation, coordinate = player.get_move.split(" ")
+    operation.downcase!
+    coordinate = coordinate.split(",").map { |el| el.to_i }
+
+    raise "invalid move!" unless valid_move?(coordinate)
+
+    [operation, coordinate]
   end
 
   def reveal_bombs
