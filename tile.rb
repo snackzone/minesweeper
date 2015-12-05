@@ -61,7 +61,7 @@ class Tile
 
     if flagged
       @flagged = false
-      @display_value = "*"
+      @display_value = "*".colorize(:yellow)
     else
       @flagged = true
       @display_value = "F".colorize(:light_blue)

@@ -13,16 +13,16 @@ class Game
     loaded_game.play
   end
 
+  def self.new_game
+    Game.new.play
+  end
+
   attr_reader :board, :player, :won, :time_elapsed
 
   def initialize
     @board = Board.new(40, 16)
     @won = false
     @time_elapsed = 0
-  end
-
-  def self.new_game
-    Game.new.play
   end
 
   def play
@@ -33,7 +33,6 @@ class Game
     reveal_bombs
     refresh_screen
     puts won ? "you win!" : "try again!"
-
     check_high_score
   end
 
@@ -41,22 +40,38 @@ class Game
     refresh_screen
 
     operation, move = get_move
+    until valid_move?(operation, move)
+      puts "invalid move!"
+      operation, move = get_move
+    end
 
+    perform_move(operation, move)
+  end
+
+  def valid_move?(operation, coordinate)
+    if operation == "save" || operation == "exit"
+      true
+    elsif coordinate.nil?
+      false
+    elsif operation == "r" || operation == "f"
+      (coordinate.length == 2) &&
+      (coordinate.all? { |value| value.between?(0, board.size - 1) })
+    else false
+    end
+  end
+
+  def perform_move(operation, move)
     case operation
-    when "s"
+    when "exit"
+      puts "bye!"
+      exit
+    when "save"
       save
     when "r"
       reveal(move)
     when "f"
       flag(move)
-    else
-      raise "Invalid operation."
     end
-  end
-
-  def valid_move?(coordinate)
-    (coordinate.length == 2) &&
-    (coordinate.all? { |value| value.between?(0, board.size - 1) })
   end
 
   def game_over?
@@ -80,15 +95,13 @@ class Game
   end
 
   def get_move
-    puts "Enter r/f and coordinate"
+    puts "Enter r/f and coordinate (can also enter \"save\" or \"exit\")"
     operation, coordinate = gets.chomp.split(" ")
     operation.downcase!
 
     if coordinate
       coordinate = coordinate.split(",").map { |el| el.to_i }
     end
-
-    #raise "invalid move!" unless valid_move?(coordinate)
 
     [operation, coordinate]
   end
@@ -139,7 +152,7 @@ class Game
   def update_high_score
     puts "enter name:"
     name = gets.chomp
-    
+
     File.truncate('high_score.txt', 0)
     File.open('high_score.txt', "w") do |file|
       file.puts name
