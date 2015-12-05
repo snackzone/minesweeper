@@ -57,15 +57,15 @@ class Tile
   end
 
   def flag
-    raise "why would you flag a revealed position?" if revealed
-    @flagged = true
-    @display_value = "F"
-    # need to add unflagging
-  end
+    raise "that position is already revealed." if revealed
 
-  def unflag
-    @flagged = false
-    @display_value = "*"
+    if flagged
+      @flagged = false
+      @display_value = "*"
+    else
+      @flagged = true
+      @display_value = "F"
+    end
   end
 
   def find_neighbors

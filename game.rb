@@ -29,7 +29,7 @@ class Game
   end
 
   def take_turn
-    puts "Enter R/F/U and coordinate"
+    puts "Enter f/u and coordinate"
     operation, coordinate = player.get_move.split(" ")
     operation = operation.downcase
     coordinate = coordinate.split(",").map { |el| el.to_i }
@@ -37,8 +37,6 @@ class Game
       reveal(coordinate)
     elsif operation == "f"
       flag(coordinate)
-    elsif operation == "u"
-      unflag(coordinate)
     else
       raise "Invalid move."
     end
@@ -68,9 +66,4 @@ class Game
   def flag(pos)
     board.flag(pos)
   end
-
-  def unflag(pos)
-    board.unflag(pos)
-  end
-
 end

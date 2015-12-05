@@ -54,12 +54,6 @@ class Board
     self[x, y].flag
   end
 
-  def unflag(pos)
-    x, y = pos
-
-    self[x, y].unflag
-  end
-
   def [](x,y)
     @grid[x][y]
   end
@@ -67,5 +61,4 @@ class Board
   def []=(x,y,value)
     @grid[x][y] = value
   end
-
 end
