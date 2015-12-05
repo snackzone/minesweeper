@@ -2,10 +2,13 @@ require_relative 'board'
 require_relative 'tile'
 require 'yaml'
 require 'byebug'
+require 'colorize'
 
 class Game
+  DISPLAY_COLOR = :green
+
   def self.load
-    puts "loading saved game..."
+    puts "loading saved game...".colorize(DISPLAY_COLOR)
     sleep(1)
 
     loaded_game = YAML.load_file("SAVED_GAME.yml")
@@ -31,7 +34,7 @@ class Game
 
     reveal_bombs
     refresh_screen
-    puts won ? "you win!" : "try again!"
+    puts (won ? "you win!" : "try again!").colorize(DISPLAY_COLOR)
     check_high_score
 
     prompt_new_game
@@ -42,7 +45,7 @@ class Game
 
     operation, move = get_move
     until valid_move?(operation, move)
-      puts "invalid move!"
+      puts "invalid move!".colorize(DISPLAY_COLOR)
       operation, move = get_move
     end
 
@@ -50,8 +53,6 @@ class Game
   end
 
   def valid_move?(operation, coordinate)
-    #debugger
-
     if operation == "save" || operation == "exit"
       true
     elsif coordinate.nil?
@@ -91,7 +92,7 @@ class Game
   end
 
   def prompt_new_game
-    puts "play again? (y/n)"
+    puts "play again? (y/n)".colorize(DISPLAY_COLOR)
     input = gets.chomp
     input == "y" ? Game.new_game : quit
   end
@@ -99,25 +100,21 @@ class Game
   def refresh_screen
     system("clear")
     update_timer
-    puts "TIMER: #{time_elapsed}"
+    puts "SWEEP THOSE MINES!".colorize(DISPLAY_COLOR)
+    puts "TIMER: #{time_elapsed}".colorize(DISPLAY_COLOR)
     board.display
+    puts "SAVE to save. EXIT to exit.".colorize(DISPLAY_COLOR)
   end
 
   def get_move
-    puts "Enter r/f and coordinate (ex: \"r a,10\"), \"save\", or \"exit\"."
+    puts "Enter r/f and coordinate (ex: \"r a,10\").".colorize(DISPLAY_COLOR)
     operation, coordinate = gets.chomp.split(" ")
     operation.downcase!
 
     if coordinate
       letters = ("a".."z").to_a
       coordinate = coordinate.downcase.split(",").map.with_index do |el, idx|
-        if idx == 0
-        #if letters.include?(el)
-          #map to integer corresponding to letter index
-          letters.index(el)
-        else
-          el.to_i
-        end
+        idx == 0 ? letters.index(el) : el.to_i
       end.reverse
     end
 
@@ -155,7 +152,7 @@ class Game
     name, high_score = File.readlines("high_score.txt").map(&:chomp)
 
     if won && time_elapsed < high_score.to_i
-      puts "NEW HIGH SCORE!!!!"
+      puts "NEW HIGH SCORE!!!!".colorize(DISPLAY_COLOR)
       update_high_score
     else display_high_score
     end
@@ -164,7 +161,7 @@ class Game
   def display_high_score
     name, high_score = File.readlines("high_score.txt").map(&:chomp)
 
-    puts "HIGH SCORE: #{name}, #{high_score}"
+    puts "HIGH SCORE: #{name}, #{high_score}".colorize(DISPLAY_COLOR)
   end
 
   def update_high_score
@@ -183,12 +180,12 @@ class Game
     f.write(self.to_yaml)
     f.close
 
-    puts "game saved successfully."
+    puts "game saved successfully.".colorize(DISPLAY_COLOR)
     sleep(1)
   end
 
   def quit
-    puts "bye!"
+    puts "bye!".colorize(DISPLAY_COLOR)
     exit
   end
 end
