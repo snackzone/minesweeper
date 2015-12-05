@@ -33,7 +33,9 @@ class Game
   end
 
   def take_turn
-    puts "Enter f/u and coordinate"
+    board.display
+
+    puts "Enter r/f and coordinate"
     operation, coordinate = player.get_move.split(" ")
     operation.downcase!
     coordinate = coordinate.split(",").map { |el| el.to_i }
@@ -47,8 +49,6 @@ class Game
     else
       raise "Invalid operation."
     end
-
-    board.display
   end
 
   def valid_move?(coordinate)
@@ -57,14 +57,16 @@ class Game
   end
 
   def game_over?
-    tiles = board.flatten
+    tiles = board.grid.flatten
     #if board contains any revealed bombs
     if tiles.any? { |tile| tile.bomb && tile.revealed }
       return true
     end
 
+    non_bombs = tiles.reject { |tile| tile.bomb }
+    #>>>>
     #if board does not contain any non-revealed non-bombs
-    if tiles.all? { |tile| !tile.bomb && tile.revealed }
+    if non_bombs.all? { |tile| tile.revealed }
       @won = true
       return true
     end
