@@ -20,20 +20,6 @@ class Board
 
     tiles.sample(num_bombs).each { |tile| tile.bomb = true }
 
-    #
-    # num_bombs.times do
-    #   tile = Tile.new(self)
-    #   tile.bomb = true
-    #   tiles << tile
-    # end
-    #
-    # safe_tiles = (size ** 2) - num_bombs
-    # safe_tiles.times do
-    #   tiles << Tile.new(self)
-    # end
-    #
-    # tiles.shuffle!
-
     grid.each_with_index do |row, idx1|
       row.each_with_index do |tile, idx2|
         new_tile = tiles.pop
@@ -74,6 +60,14 @@ class Board
     x, y = pos
 
     grid[x][y].unflag
+  end
+
+  def [](x,y)
+    @grid[x][y]
+  end
+
+  def []=(x,y,value)
+    @grid[x][y] = value
   end
 
 end
