@@ -30,9 +30,18 @@ class Board
   end
 
   def display
-    board_display = ""
+    board_display = " "
+
+    grid.first.each_index do |idx|
+      board_display += " " if idx < 10
+      board_display += idx.to_s
+    end
+
+    board_display += "\n"
 
     grid.each_with_index do |row, idx1|
+      board_display += " " if idx1 < 10
+      board_display += idx1.to_s
       row.each_with_index do |tile, idx2|
           current_tile = self[idx1, idx2]
           board_display += "#{current_tile} "
