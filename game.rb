@@ -101,13 +101,22 @@ class Game
   end
 
   def get_move
-    puts "Enter r/f and coordinate (can also enter \"save\" or \"exit\")"
+    puts "Enter r/f and coordinate (ex: \"r a,10\"), \"save\", or \"exit\"."
     operation, coordinate = gets.chomp.split(" ")
     operation.downcase!
 
     if coordinate
-      coordinate = coordinate.split(",").map { |el| el.to_i }
+      letters = ("a".."z").to_a
+      coordinate = coordinate.downcase.split(",").map do |el|#.map { |el| el.to_i }
+        if letters.include?(el)
+          #map to integer corresponding to letter index
+          letters.index(el)
+        else
+          el.to_i
+        end
+      end.reverse
     end
+    #debugger
 
     [operation, coordinate]
   end

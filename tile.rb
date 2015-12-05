@@ -67,11 +67,11 @@ class Tile
 
   def flag
     if flagged
-      self.flagged = false
-      display_value = TILE_DISPLAYS[:unrevealed]
+      @flagged = false
+      @display_value = TILE_DISPLAYS[:unrevealed]
     elsif !revealed
-      self.flagged = true
-      display_value = TILE_DISPLAYS[:flagged]
+      @flagged = true
+      @display_value = TILE_DISPLAYS[:flagged]
     end
   end
 
