@@ -1,4 +1,5 @@
 require_relative 'board'
+require 'colorize'
 
 class Tile
 
@@ -13,6 +14,13 @@ class Tile
     [-1, -1]
   ]
 
+  TILE_DISPLAYS = {
+    unrevealed: "*".colorize(:yellow),
+    empty: "_".colorize(:blue),
+    flagged: "F".colorize(:light_blue),
+    bomb: "X".colorize(:red)
+  }
+
   attr_reader :flagged, :board
   attr_accessor :neighbors, :revealed, :bomb, :position, :display_value
 
@@ -21,7 +29,7 @@ class Tile
     @revealed = false
     @flagged = false
     @neighbors = []
-    @display_value = "*".colorize(:yellow)
+    @display_value = TILE_DISPLAYS[:unrevealed]
     @board = board
     @position = []
   end
@@ -45,11 +53,11 @@ class Tile
 
     if revealed
       if bomb
-        @display_value = "X".colorize(:red)
+        @display_value = TILE_DISPLAYS[:bomb]
       elsif neighbor_bomb_count > 0
         @display_value = neighbor_bomb_count.to_s.colorize(:white)
       else
-        @display_value = "_".colorize(:blue)
+        @display_value = TILE_DISPLAYS[:empty]
       end
     end
 
@@ -61,10 +69,10 @@ class Tile
 
     if flagged
       @flagged = false
-      @display_value = "*".colorize(:yellow)
+      @display_value = TILE_DISPLAYS[:unrevealed]
     else
       @flagged = true
-      @display_value = "F".colorize(:light_blue)
+      @display_value = TILE_DISPLAYS[:flagged]
     end
   end
 
