@@ -28,23 +28,8 @@ class Board
     end
   end
 
-  def display
-    letters = ("A".."Z").to_a
-    board_display = "   "
-
-    grid.first.each_index { |idx| board_display += "#{letters[idx]} " }
-    board_display += "\n"
-
-    grid.each_with_index do |row, idx1|
-      board_display += " " if idx1 < 10
-      board_display += "#{idx1} "
-      row.each_with_index do |tile, idx2|
-          current_tile = self[idx1, idx2]
-          board_display += "#{current_tile} "
-      end
-      board_display += "\n"
-    end
-    puts board_display
+  def in_bounds?(pos)
+    pos.all? { |x| x.between?(0, size) }
   end
 
   def reveal(pos)
