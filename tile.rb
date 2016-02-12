@@ -15,11 +15,11 @@ class Tile
   ]
 
   TILE_DISPLAYS = {
-    unrevealed: "*".colorize(:yellow),
-    empty: "_".colorize(:blue),
-    flagged: "F".colorize(:red),
-    bomb: "X".colorize(:red),
-    neighbor_bomb_count: :white
+    unrevealed: "*".colorize(color: :yellow, background: :black),
+    empty: "_".colorize(color: :blue, background: :black),
+    flagged: "F".colorize(color: :red, background: :black),
+    bomb: "X".colorize(color: :red, background: :black),
+    neighbor_bomb_count: {color: :white, background: :black}
   }
 
   attr_reader :board

@@ -36,11 +36,11 @@ class Display
   def render
     system("clear")
     update_timer
-    puts "SWEEP THOSE MINES!".colorize(DISPLAY_COLOR)
-    puts "Move with arrow keys or WASD. Reveal with enter or spacebar.".colorize(DISPLAY_COLOR)
-    puts "TIMER: #{time_elapsed}".colorize(DISPLAY_COLOR)
-    build_grid.each { |row| puts row.join(" ") }
-    puts "TAB to save. ESC to exit.".colorize(DISPLAY_COLOR)
+    puts "SWEEP THOSE MINES!".colorize(color: DISPLAY_COLOR, background: :black)
+    puts "Move with arrow keys or WASD. Reveal with enter or spacebar.".colorize(color: DISPLAY_COLOR, background: :black)
+    puts "TIMER: #{time_elapsed}".colorize(color: DISPLAY_COLOR, background: :black)
+    build_grid.each { |row| puts row.join(" ".colorize(background: :black)) }
+    puts "TAB to save. ESC to exit.".colorize(color: DISPLAY_COLOR, background: :black)
   end
 
   def set_timer
